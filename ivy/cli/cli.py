@@ -8,6 +8,7 @@ import httpx
 from ivy.prompt_registry import PromptRegistry
 
 DEFAULT_BASE_URL = "http://localhost:8000"
+API_TIMEOUT_SECONDS = 120.0
 
 
 prompt_registry = PromptRegistry()
@@ -15,6 +16,7 @@ prompt_registry = PromptRegistry()
 
 class CliContext:
     """Context for CLI commands."""
+
     def __init__(self, base_url: str = DEFAULT_BASE_URL):
         self.base_url = base_url
 
@@ -63,7 +65,7 @@ def create_command_callback(prompt_id: str) -> callable:
                 response = client.post(
                     f"{base_url}/generate",
                     json={"prompt_id": prompt_id, "parameters": kwargs},
-                    timeout=60.0
+                    timeout=API_TIMEOUT_SECONDS,
                 )
                 response.raise_for_status()
                 response_data = response.json()

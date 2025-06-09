@@ -4,7 +4,7 @@ Ivy is a simple FastAPI service that performs text processing tasks using an LLM
 
 ## Prerequisites
 
-- Python 3.8 or higher
+- Python 3.11 or higher
 - [uv](https://github.com/astral-sh/uv) (Python package installer and resolver)
 
 ## Quick Start
@@ -32,10 +32,9 @@ Ivy is a simple FastAPI service that performs text processing tasks using an LLM
 
 ## Environment
 
-You will need an API key for any LLM provider referenced by the prompts (currently
-OpenAI and Anthropic).
+You will need an API key for any LLM provider referenced by the prompts (currently OpenAI, Anthropic, and Mistral).
 
-Copy .env.template to .env, and set your values for `OPENAI_API_KEY` and `ANTHROPIC_API_KEY`.
+Copy .env.template to .env, and set your values for `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, and `MISTRAL_API_KEY`.
 
 ## Running the Service
 
@@ -84,7 +83,7 @@ All text processing capabilities are available as direct commands:
 
 ```bash
 # Sentiment analysis
-ivy sentiment --text "I love this project!"
+ivy sentiment --text "Everyone loves cute fuzzy animals"
 
 # Text summarization
 ivy summarize --text "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
@@ -93,7 +92,29 @@ ivy summarize --text "Lorem ipsum dolor sit amet, consectetur adipiscing elit...
 ivy keywords --text "Artificial intelligence and machine learning are transforming..."
 
 # Translate text
-ivy translate --text "Hello, world!" --language "Spanish"
+ivy translate --text "Hello, world" --language "Spanish"
+
+# Compare texts
+ivy compare --text1 "ABC" --text2 "123"
+```
+
+### Drawing Text from URLs
+
+A URL can be given for any parameter that otherwise would take input text, in which case
+the text will be drawn from a markdown rendering of the web page at the given URL.
+
+```bash
+# Sentiment analysis
+ivy sentiment --text https://shakespearequoteoftheday.com/
+
+# Text summarization
+ivy summarize --text https://fr.wikipedia.org/wiki/Oulipo
+
+# Translate text
+ivy translate --text https://en.wikipedia.org/wiki/Armenians --language "Արեւմտահայերէն"
+
+# Compare texts
+ivy compare --text1 https://github.com/chrisimmel/calliope --text2 https://chrisimmel.com/collection/calliope
 ```
 
 ### Command Help
@@ -121,7 +142,7 @@ See the existing ones for examples. Each prompt can have its own specialized par
 these will automatically be reflected in the CLI and help.
 s
 You may also reference additional LLM providers and models. Any provider supported by the
-[Instructor library](https://github.com/567-labs/instructor) is nominally supported, but only the library dependencies for OpenAI and Anthropic are installed by default.
+[Instructor library](https://github.com/567-labs/instructor) is nominally supported, but only the library dependencies for OpenAI, Anthropic, and Mistral are installed by default.
 
 ## Development
 
