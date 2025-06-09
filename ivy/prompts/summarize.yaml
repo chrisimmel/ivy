@@ -1,0 +1,15 @@
+prompt_id: summarize
+description: Summarize the given text
+user_prompt: |
+  Write a short summary of the following text:
+
+  <TEXT>
+  {{text}}
+  </TEXT>
+model_provider: anthropic
+model_name: claude-sonnet-4-0
+parameters:
+  - name: text
+    description: The text to summarize
+    type: string
+    allow_url: true

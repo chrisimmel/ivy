@@ -1,0 +1,23 @@
+prompt_id: compare
+description: Compare two texts
+user_prompt: |
+  Compare the following two texts. Talk about their similariities and differences.
+
+  <FIRST_TEXT>
+  {{text1}}
+  </FIRST_TEXT>
+
+  <SECOND_TEXT>
+  {{text2}}
+  </SECOND_TEXT>
+model_provider: anthropic
+model_name: claude-sonnet-4-0
+parameters:
+  - name: text1
+    description: The first text to compare
+    type: string
+    allow_url: true
+  - name: text2
+    description: The second text to compare
+    type: string
+    allow_url: true

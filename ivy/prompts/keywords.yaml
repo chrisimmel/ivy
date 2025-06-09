@@ -1,0 +1,16 @@
+prompt_id: keywords
+description: Extract a list of keywords from the given text
+user_prompt: |
+  Collect a list of keywords from the following text:
+
+  <TEXT>
+  {{text}}
+  </TEXT>
+model_provider: openai
+model_name: gpt-4o-mini
+parameters:
+  - name: text
+    description: The text from which to extract keywords
+    type: string
+    allow_url: true
+

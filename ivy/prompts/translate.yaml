@@ -1,0 +1,19 @@
+prompt_id: translate
+description: Translate the given text to the specified language
+user_prompt: |
+  Translate the following text into {{language}}.
+
+  <TEXT>
+  {{text}}
+  </TEXT>
+model_provider: openai
+model_name: gpt-4
+parameters:
+  - name: text
+    description: The text to translate
+    type: string
+    allow_url: true
+  - name: language
+    description: The language to translate the text into
+    type: string
+    allow_url: false

@@ -1,0 +1,15 @@
+prompt_id: sentiment
+description: Classify the sentiment of the given text
+user_prompt: |
+  Classify the sentiment of the following text into one of [positive, negative, neutral]:
+
+  <TEXT>
+  {{text}}
+  </TEXT>
+model_provider: openai
+model_name: gpt-4o-mini
+parameters:
+  - name: text
+    description: The text to classify
+    type: string
+    allow_url: true
