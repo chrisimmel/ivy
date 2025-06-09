@@ -1,7 +1,7 @@
 prompt_id: sentiment
 description: Classify the sentiment of the given text
 user_prompt: |
-  Classify the sentiment of the following text into one of [positive, negative, neutral]:
+  Classify the sentiment of the following text strictly into one of [positive, negative, neutral]:
 
   <TEXT>
   {{text}}
