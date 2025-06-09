@@ -157,23 +157,15 @@ Each command provides detailed help with its options:
 ivy sentiment --help
 ```
 
-### Custom Server
-
-By default, the CLI connects to a local server at http://localhost:8000, but you can specify a different server:
-
-```bash
-# Connect to a different server
-ivy --base-url http://custom-server:8080 sentiment --input-text "Amazing work!"
-```
-
 ### Adding New Prompts
 
 The service and CLI dynamically load commands from the prompt registry. To add a new prompt, simply create a new YAML file in the `ivy/prompts/` directory with the appropriate structure.
 See the existing ones for examples. Each prompt can have its own specialized parameters, and
 these will automatically be reflected in the CLI and help.
-s
-You may also reference additional LLM providers and models. Any provider supported by the
-[Instructor library](https://github.com/567-labs/instructor) is nominally supported, but only the library dependencies for OpenAI, Anthropic, and Mistral are installed by default.
+
+You may also reference additional LLM providers and models. Support is included for OpenAI, Anthropic, and Mistral, but any provider supported by the
+[Instructor library](https://github.com/567-labs/instructor) can be supported if you add the needed
+library dependencies.
 
 ## Development
 
