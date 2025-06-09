@@ -103,7 +103,9 @@ The CLI tool provides a convenient way to interact with the service. Each text p
 ```bash
 # Check service health
 ivy health
+```
 
+```bash
 # List available commands
 ivy --help
 ```
@@ -115,16 +117,24 @@ All text processing capabilities are available as direct commands:
 ```bash
 # Sentiment analysis
 ivy sentiment --text "Everyone loves cute fuzzy animals"
+```
 
+```bash
 # Text summarization
 ivy summarize --text "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+```
 
+```bash
 # Get keywords from text
 ivy keywords --text "Artificial intelligence and machine learning are transforming..."
+```
 
+```bash
 # Translate text
 ivy translate --text "Hello, world" --language "Spanish"
+```
 
+```bash
 # Compare texts
 ivy compare --text1 "ABC" --text2 "123"
 ```
@@ -137,13 +147,19 @@ the text will be drawn from a markdown rendering of the web page at the given UR
 ```bash
 # Sentiment analysis
 ivy sentiment --text https://shakespearequoteoftheday.com/
+```
 
+```bash
 # Text summarization
 ivy summarize --text https://fr.wikipedia.org/wiki/Oulipo
+```
 
+```bash
 # Translate text
 ivy translate --text https://en.wikipedia.org/wiki/Armenians --language "Արեւմտահայերէն"
+```
 
+```bash
 # Compare texts
 ivy compare --text1 https://github.com/chrisimmel/calliope --text2 https://chrisimmel.com/collection/calliope
 ```
