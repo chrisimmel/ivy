@@ -39,11 +39,8 @@ async def generate_response(prompt_id: str, args: dict[str, str]) -> TextRespons
                 "content": (
                     "You are a helpful assistant that processes text as prompted. "
                     "Respond in a structured format with the output text and language."
-                )
+                ),
             },
-            {
-                "role": "user",
-                "content": user_prompt
-            }
-        ]
+            {"role": "user", "content": user_prompt},
+        ],
     )
