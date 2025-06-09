@@ -196,11 +196,13 @@ ivy/
 ├── cli/                # CLI implementation
 │   └── cli.py          # Dynamic CLI using Click
 ├── llm.py              # LLM service integration layer
+├── models.py           # Pydantic models
 ├── prompt_registry.py  # Prompt management system
 ├── prompts/            # YAML prompt definitions
 │   ├── sentiment.yaml  # Sentiment analysis prompt
 │   └── summarize.yaml  # Text summarization prompt
 │   └── etc.            # Other prompts
 ├── pyproject.toml      # Project metadata and dependencies
-└── README.md           # This file
+├── README.md           # This file
+└── utils.py            # Text utility functions
 ```
