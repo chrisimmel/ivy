@@ -58,10 +58,41 @@ uvicorn ivy.app:app --host 0.0.0.0 --port 8000 --workers 4
 
 ### API Documentation
 
-Once the service is running, you can access:
+Once the service is running, you can see full API documentation at:
 
 - Interactive API docs: http://localhost:8000/docs
 - Alternative API docs: http://localhost:8000/redoc
+
+There are two endpoints:
+
+- /health - a simple endpoint to test whether the service is up.
+- /generate - a generic endpoint that lets you use any of the prompts with given parameters.
+
+You can test the API directly via curl or Postman.
+
+```bash
+curl -X POST \
+    http://localhost:8000/generate \
+    -H "Content-Type: application/json" \
+    -d '{
+      "prompt_id": "sentiment",
+      "parameters": {
+        "text": "I really love using this service! It makes my work so much easier."
+      }
+    }'
+```
+
+```bash
+curl -X POST \
+    http://localhost:8000/generate \
+    -H "Content-Type: application/json" \
+    -d '{
+      "prompt_id": "summarize",
+      "parameters": {
+        "text": "https://www.lettria.com/"
+      }
+    }'
+```
 
 ## Using the CLI
 
