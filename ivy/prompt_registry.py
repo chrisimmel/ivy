@@ -7,6 +7,7 @@ from ivy.models import TextTaskPrompt
 
 class PromptRegistry:
     """A registry of prompts for text processing tasks."""
+
     _prompts_dir: Path | None = None
 
     def __init__(self, prompts_dir: Path | None = None):

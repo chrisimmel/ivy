@@ -14,10 +14,7 @@ def is_url(string: str) -> bool:
 
 
 async def get_markdown_from_web_page(
-    url: str,
-    ignore_links: bool = True,
-    ignore_images: bool = True,
-    timeout: int = 20
+    url: str, ignore_links: bool = True, ignore_images: bool = True, timeout: int = 20
 ) -> str | None:
     """Convert HTML from a URL to nicely formatted markdown (async version).
 
@@ -31,9 +28,7 @@ async def get_markdown_from_web_page(
         Markdown string or None if conversion failed
     """
     # Fetch the HTML with proper headers using httpx
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
     async with httpx.AsyncClient(timeout=timeout) as client:
         response = await client.get(url, headers=headers)
