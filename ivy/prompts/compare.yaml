@@ -1,7 +1,7 @@
 prompt_id: compare
 description: Compare two texts
 user_prompt: |
-  Compare the following two texts. Talk about their similariities and differences.
+  Compare the following two texts. Describe the subject matter of both, and detail their similariities and differences.
 
   <FIRST_TEXT>
   {{text1}}
@@ -10,8 +10,8 @@ user_prompt: |
   <SECOND_TEXT>
   {{text2}}
   </SECOND_TEXT>
-model_provider: anthropic
-model_name: claude-sonnet-4-0
+model_provider: openai
+model_name: gpt-4
 parameters:
   - name: text1
     description: The first text to compare

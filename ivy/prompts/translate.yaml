@@ -7,7 +7,7 @@ user_prompt: |
   {{text}}
   </TEXT>
 model_provider: openai
-model_name: gpt-4
+model_name: gpt-4.1
 parameters:
   - name: text
     description: The text to translate

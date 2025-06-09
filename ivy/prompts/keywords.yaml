@@ -6,11 +6,10 @@ user_prompt: |
   <TEXT>
   {{text}}
   </TEXT>
-model_provider: openai
-model_name: gpt-4o-mini
+model_provider: mistral
+model_name: mistral-medium-2505
 parameters:
   - name: text
     description: The text from which to extract keywords
     type: string
     allow_url: true
-
