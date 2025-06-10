@@ -48,10 +48,12 @@ async def generate_prompt(request: DynamicPromptRequest) -> TextResponse:
             if param.allow_url and param.name in provided_params:
                 value = request.parameters.get(param.name)
                 if value and is_url(value):
+                    # The text value is a URL, so replace it with markdown text from the corresponding web page.
                     print(f"Getting text from web page at {value}")
                     text = await get_markdown_from_web_page(value)
                     provided_params[param.name] = text
 
+        # Make the LLM call to generate the response.
         response = await generate_response(prompt_id=request.prompt_id, args=provided_params)
 
         print(f"Generated response: {response}")
