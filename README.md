@@ -1,6 +1,6 @@
 # Ivy
 
-Ivy is a simple FastAPI service that performs text processing tasks using an LLM. It provides a REST API for text generation and processing, with a CLI tool available for convenient interaction.
+Ivy is a simple FastAPI service that performs text processing tasks using an LLM. It provides a REST API for text generation and processing, along with a CLI tool for convenient interaction. It has an extensible repertoire of prompts, each implementing a specific text processing task such as summarization, sentiment analysis, etc.
 
 ## Prerequisites
 
@@ -66,7 +66,7 @@ Once the service is running, you can see full API documentation at:
 There are two endpoints:
 
 - /health - a simple endpoint to test whether the service is up.
-- /generate - a generic endpoint that lets you use any of the prompts with given parameters.
+- /generate - a generic endpoint that lets you use any of the prompts with their respective parameters.
 
 You can test the API directly via curl or Postman.
 
@@ -179,6 +179,8 @@ The service and CLI dynamically load commands from the prompt registry. To add a
 See the existing ones for examples. Each prompt can have its own specialized parameters, and
 these will automatically be reflected in the CLI and help.
 
+Although it isn't currently enforced, prompt names should be single human-readable words with no spaces, suitable for use as command names (because they are used directly as such in the CLI).
+
 You may also reference additional LLM providers and models. Support is included for OpenAI, Anthropic, and Mistral, but any provider supported by the
 [Instructor library](https://github.com/567-labs/instructor) can be supported if you add the needed
 library dependencies.
@@ -200,7 +202,7 @@ ivy/
 ├── prompt_registry.py  # Prompt management system
 ├── prompts/            # YAML prompt definitions
 │   ├── sentiment.yaml  # Sentiment analysis prompt
-│   └── summarize.yaml  # Text summarization prompt
+│   ├── summarize.yaml  # Text summarization prompt
 │   └── etc.            # Other prompts
 ├── pyproject.toml      # Project metadata and dependencies
 ├── README.md           # This file
