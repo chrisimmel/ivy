@@ -62,6 +62,7 @@ def create_command_callback(prompt_id: str) -> callable:
         base_url = ctx.obj.base_url
         try:
             with httpx.Client() as client:
+                # Post to the /generate endpoint with the prompt_id and parameters.
                 response = client.post(
                     f"{base_url}/generate",
                     json={"prompt_id": prompt_id, "parameters": kwargs},
@@ -85,18 +86,19 @@ def create_command_callback(prompt_id: str) -> callable:
             click.echo(f"❌ Unexpected error: {e}", err=True)
             sys.exit(1)
 
-    # Set the callback's docstring
+    # The callback's docstring comes directly from the prompt description.
     callback.__doc__ = prompt.description
     return callback
 
 
 def register_prompt_commands() -> None:
     """Register commands for all available prompts dynamically."""
+    # Create an ivy subcommand for each prompt...
     for prompt_id in prompt_registry.list_prompts():
         prompt = prompt_registry.get_prompt(prompt_id)
         callback = create_command_callback(prompt_id)
 
-        # Dynamically build the command with the parameters from the prompt
+        # Dynamically build the command with the parameters from the prompt.
         param_options = []
         for param in prompt.parameters:
             # Other parameters are all required.
@@ -108,7 +110,7 @@ def register_prompt_commands() -> None:
                 )
             )
 
-        # Create a new command with the parameters
+        # Create a new command with the parameters.
         command = click.Command(
             name=prompt_id,
             callback=callback,
@@ -116,7 +118,7 @@ def register_prompt_commands() -> None:
             params=param_options,
         )
 
-        # Add the command directly to the main CLI group
+        # Add the command directly to the main CLI group.
         cli.add_command(command)
 
 
