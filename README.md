@@ -170,7 +170,7 @@ ivy compare --text1 https://github.com/chrisimmel/calliope --text2 https://chris
 
 By default, the CLI bypasses the service, calling the LLM prompting logic directly rather than making an HTTP call. This avoids the need to run the service.
 
-If, however, you _do_ want the CLI to call through to the service, you can activate this mode by adding the --use-api flag on the command line, as in:
+If, however, you _do_ want the CLI to call through to the service, you can activate this mode by adding the `--use-api` flag on the command line, as in:
 
 ```bash
 ivy --use-api summarize --text https://fr.wikipedia.org/wiki/Pierre_Boulez
