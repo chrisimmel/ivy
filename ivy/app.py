@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from ivy.llm import TextResponse, generate_response
+from ivy.params import prepare_params
 from ivy.prompt_registry import PromptRegistry
 from ivy.utils import get_markdown_from_web_page, is_url
 
@@ -32,29 +33,13 @@ async def generate_prompt(request: DynamicPromptRequest) -> TextResponse:
         # Use a fresh registry instance to ensure we have the latest prompts.
         prompt = PromptRegistry().get_prompt(request.prompt_id)
 
-        # Validate that all required parameters are provided.
-        # (We currently treat all parameters as required.)
-        required_param_names = {param.name for param in prompt.parameters}
-        provided_params = dict(request.parameters)
-        provided_param_names = set({key for key, value in provided_params.items() if value is not None})
-
-        if missing := required_param_names - provided_param_names:
-            raise HTTPException(status_code=400, detail=f"Missing required parameters: {', '.join(missing)}")
-
-        if extra := provided_param_names - required_param_names:
-            raise HTTPException(status_code=400, detail=f"Unexpected parameters provided: {', '.join(extra)}")
-
-        for param in prompt.parameters:
-            if param.allow_url and param.name in provided_params:
-                value = request.parameters.get(param.name)
-                if value and is_url(value):
-                    # The text value is a URL, so replace it with markdown text from the corresponding web page.
-                    print(f"Getting text from web page at {value}")
-                    text = await get_markdown_from_web_page(value)
-                    provided_params[param.name] = text
+        try:
+            params = await prepare_params(prompt, request.parameters)
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
 
         # Make the LLM call to generate the response.
-        response = await generate_response(prompt_id=request.prompt_id, args=provided_params)
+        response = await generate_response(prompt=prompt, args=params, debug=True)
 
         print(f"Generated response: {response}")
 
