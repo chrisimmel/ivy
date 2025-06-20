@@ -38,6 +38,8 @@ Copy .env.template to .env, and set your values for `OPENAI_API_KEY`, `ANTHROPIC
 
 ## Running the Service
 
+If you want to access Ivy as a service via HTTP, then you must run the FastAPI service. This is not necessary if you run it via the CLI without the --use-api flag.
+
 ### Development Mode
 
 Start the service with auto-reload for development:
@@ -96,7 +98,7 @@ curl -X POST \
 
 ## Using the CLI
 
-The CLI tool provides a convenient way to interact with the service. Each text processing capability defined in the prompt registry is automatically available as a top-level command.
+The CLI tool provides a convenient way to interact with Ivy. Each text processing capability defined in the prompt registry is automatically available as a top-level command.
 
 ### Basic Usage
 
@@ -162,6 +164,16 @@ ivy translate --text https://en.wikipedia.org/wiki/Armenians --language "Արե�
 ```bash
 # Compare texts
 ivy compare --text1 https://github.com/chrisimmel/calliope --text2 https://chrisimmel.com/collection/calliope
+```
+
+### Bypassing the Service (or not)
+
+By default, the CLI bypasses the service, calling the LLM prompting logic directly rather than making an HTTP call. This avoids the need to run the service.
+
+If, however, you _do_ want the CLI to call through to the service, you can activate this mode by adding the --use-api flag on the command line, as in:
+
+```bash
+ivy --use-api summarize --text https://fr.wikipedia.org/wiki/Pierre_Boulez
 ```
 
 ### Command Help
