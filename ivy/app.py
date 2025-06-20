@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 from ivy.llm import TextResponse, generate_response
 from ivy.params import prepare_params
 from ivy.prompt_registry import PromptRegistry
-from ivy.utils import get_markdown_from_web_page, is_url
 
 app = FastAPI()
 
@@ -25,7 +24,7 @@ async def health_check():
 
 
 @app.post("/generate", response_model=TextResponse)
-async def generate_prompt(request: DynamicPromptRequest) -> TextResponse:
+async def generate_prompt_response(request: DynamicPromptRequest) -> TextResponse:
     """Generate a response using any registered prompt."""
     try:
         print(f"Received request: {request}")

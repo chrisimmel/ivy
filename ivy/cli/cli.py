@@ -11,6 +11,7 @@ from ivy.models import TextTaskPrompt
 from ivy.params import prepare_params
 from ivy.prompt_registry import PromptRegistry
 
+
 DEFAULT_BASE_URL = "http://localhost:8000"
 API_TIMEOUT_SECONDS = 120.0
 

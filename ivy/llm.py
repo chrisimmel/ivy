@@ -2,10 +2,8 @@
 
 import instructor
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
 
 from ivy.models import TextResponse, TextTaskPrompt
-from ivy.prompt_registry import PromptRegistry
 
 # Load environment variables (for API keys)
 load_dotenv()

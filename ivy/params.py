@@ -5,6 +5,19 @@ from ivy.utils import get_markdown_from_web_page, is_url
 
 
 async def prepare_params(prompt: TextTaskPrompt, params: dict[str, Any]) -> dict[str, Any]:
+    """
+    Prepare the parameters for a prompt.
+
+    This function validates the parameters, ensuring that all required parameters are provided and that no unexpected parameters are provided.
+    It also replaces any URL parameters with the corresponding markdown text from the corresponding web page.
+
+    Args:
+        prompt: The prompt to use.
+        params: The parameters to prepare.
+
+    Returns:
+        The prepared parameters.
+    """
     required_param_names = {param.name for param in prompt.parameters}
     provided_param_names = set({key for key, value in params.items() if value is not None})
 
