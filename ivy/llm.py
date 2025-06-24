@@ -2,16 +2,14 @@
 
 import instructor
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
 
-from ivy.models import TextResponse
-from ivy.prompt_registry import PromptRegistry
+from ivy.models import TextResponse, TextTaskPrompt
 
 # Load environment variables (for API keys)
 load_dotenv()
 
 
-async def generate_response(prompt_id: str, args: dict[str, str]) -> TextResponse:
+async def generate_response(prompt: TextTaskPrompt, args: dict[str, str], debug: bool = False) -> TextResponse:
     """Generate a structured greeting based on input text.
 
     Args:
@@ -21,10 +19,10 @@ async def generate_response(prompt_id: str, args: dict[str, str]) -> TextRespons
     Returns:
         A TextResponse object
     """
-    prompt = PromptRegistry().get_prompt(prompt_id)
     provider_model_id = f"{prompt.model_provider}/{prompt.model_name}"
 
-    print(f"Calling prompt {prompt.prompt_id} with parameters {args}")
+    if debug:
+        print(f"Calling prompt {prompt.prompt_id} with model {provider_model_id} and parameters {args}")
 
     # Initialize provider and model of choice.
     client = instructor.from_provider(provider_model_id, async_client=True)
